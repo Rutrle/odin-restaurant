@@ -12,6 +12,14 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      }
     ],
   },
   resolve: {
@@ -20,20 +28,16 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
-
-
+  devtool: 'inline-source-map',
+  devServer: {
+    watchFiles: ["./src/template.html"],
+    static: path.join(__dirname, "dist"),
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/template.html",
     }),
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-    ],
-  },
+  ]
 };
