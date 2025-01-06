@@ -32,7 +32,6 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    watchFiles: ["./src/template.html"],
     static: path.join(__dirname, "dist"),
   },
   plugins: [
